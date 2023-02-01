@@ -16,6 +16,9 @@ ${el.alpha2Code.toLowerCase()}.png`"
 
 <script setup>
 import { ref } from "vue";
+import { useCountryStore } from "../stores/country";
+
+const countryStore = useCountryStore();
 
 const countries = ref(null);
 
@@ -26,6 +29,14 @@ async function getCountries() {
 }
 
 getCountries();
+
+function showCountry(el){
+  countryStore.flag = el.alpha2Code;
+  countryStore.name = el.name.common;
+  countryStore.capital = el.capital[0];
+  countryStore.area= el.area;
+  countryStore.borders = el.borders;
+}
 </script>
 
 <style></style>
